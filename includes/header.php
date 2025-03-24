@@ -17,7 +17,7 @@
           <span class="text-2xl font-display font-light tracking-tight text-foreground/80">Calculator</span>
         </div>
         <nav class="hidden md:flex items-center space-x-8">
-          <a href="#calculator" class="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
+          <a href="#zakat-calculator-section" class="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
             Calculator
           </a>
           <a href="#about" class="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">

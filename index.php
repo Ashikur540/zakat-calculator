@@ -25,7 +25,7 @@
         <script>
             // Initialize Preline UI
             document.addEventListener('DOMContentLoaded', () => {
-                HSStaticMethods.autoInit();
+                window.HSStaticMethods.autoInit();
             });
         </script>
     </body>
