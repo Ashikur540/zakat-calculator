@@ -1,6 +1,11 @@
 <!-- Calculator section -->
-<section class="mb-10 lg:mb-18" id="zakat-calculator-section">
+<section class="mb-10 lg:mb-18 mt-10 lg:mt-18 mt-" id="zakat-calculator-section">
+
     <div class="container mx-auto px-4">
+        <div class="max-w-lg text-center mx-auto mb-10">
+            <h2 class="text-2xl font-semibold mb-2" style="color: var(--color-primary);">জাকাতের হিসাব নির্ণয় করুন</h2>
+            <p class="text-sm text-gray-600">আপনার জাকাতের হিসাব নির্ণয় করতে নিচের ফর্মটি পূরণ করুন।</p>
+        </div>
         <form action="calculator-step-2.php" method="POST" class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow">
             <div class="text-center mb-6">
                 <h2 class="text-xl font-semibold mb-2">যাকাতযোগ্য সম্পদ (1)</h2>

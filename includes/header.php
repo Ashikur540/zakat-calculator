@@ -7,7 +7,7 @@
         <title>Zakat Calculator</title>
         <script src="https://cdn.tailwindcss.com"></script>
     </head>
-    <body class="bg-gray-100">
+    <body>
         <header 
       class="sticky top-0 left-0 right-0 z-50 py-4 px-6 transition-all duration-300 ease-in-out",
         scrolled bg-white/80 backdrop-blur-lg shadow-subtle">

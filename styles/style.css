@@ -1,0 +1,27 @@
+:root {
+	--color-primary: #1b4b40;
+	--color-accent: #ffa500;
+	--color-background: #f7f3ea;
+	--color-text: #4b5563;
+	/* --font-primary: "Playfair Display", serif; */
+	--font-primary: "Tiro Bangla", sans-serif;
+	/* --font-body: "Plus Jakarta Sans", sans-serif; */
+}
+
+body {
+	background-color: var(--color-background);
+	color: var(--color-text);
+	font-family: var(--font-primary);
+	scroll-behavior: smooth;
+}
+
+/* Add custom font classes */
+.font-playfair {
+	font-family: var(--font-primary);
+}
+
+.font-jakarta {
+	font-family: var(--font-body);
+}
+
+/* Rest of your CSS */
