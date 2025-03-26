@@ -8,7 +8,7 @@
         </div>
         <form action="calculator-step-2.php" method="POST" class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow">
             <div class="text-center mb-6">
-                <h2 class="text-xl font-semibold mb-2">যাকাতযোগ্য সম্পদ (1)</h2>
+                <h2 class="text-xl font-semibold mb-2">যাকাতযোগ্য সম্পদ (১)</h2>
                 <p class="text-sm text-gray-600">[যাকাতের হিসাব নির্ণয়ে প্রয়োজনীয় তথ্য প্রদান করুন]</p>
             </div>
 
