@@ -20,7 +20,7 @@
                         <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-4">
                             <span class="text-gray-500">৳</span>
                         </div>
-                        <button type="button" data-hs-overlay="#goldCalculatorModal" onclick="setMetalType('gold')" class="absolute right-3 top-1/2 -translate-y-1/2 bg-green-600 text-white text-xs px-3 py-1 rounded">যাকাতের মূল্য নির্ণয় করতে এখানে ক্লিক করুন</button>
+                        <button type="button" data-hs-overlay="#goldCalculatorModal" onclick="setMetalType('gold')" class="absolute right-3 top-1/2 -translate-y-1/2 bg-teal-600 text-white text-xs px-3 py-1 rounded">যাকাতের মূল্য নির্ণয় করতে এখানে ক্লিক করুন</button>
                     </div>
                 </div>
 
@@ -31,7 +31,7 @@
                         <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-4">
                             <span class="text-gray-500">৳</span>
                         </div>
-                        <button type="button" data-hs-overlay="#goldCalculatorModal" onclick="setMetalType('silver')" class="absolute right-3 top-1/2 -translate-y-1/2 bg-green-600 text-white text-xs px-3 py-1 rounded">যাকাতের মূল্য নির্ণয় করতে এখানে ক্লিক করুন</button>
+                        <button type="button" data-hs-overlay="#goldCalculatorModal" onclick="setMetalType('silver')" class="absolute right-3 top-1/2 -translate-y-1/2 bg-teal-600 text-white text-xs px-3 py-1 rounded">যাকাতের মূল্য নির্ণয় করতে এখানে ক্লিক করুন</button>
                     </div>
                 </div>
 
@@ -131,8 +131,11 @@
             </div>
 
             <div class="mt-6">
-                <button type="submit" class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-green-600 text-white hover:bg-green-700 disabled:opacity-50 disabled:pointer-events-none">
-                    হিসাব নির্ণয় করুন
+                <p class="text-red-500 text-sm mb-2 hidden" id="validation-error">অনুগ্রহ করে কমপক্ষে একটি ক্ষেত্র পূরণ করুন</p>
+                <button type="submit" id="submit-btn" class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-teal-600 text-white hover:bg-teal-700 disabled:opacity-50">
+                    পরবর্তী ধাপে যান <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
                 </button>
             </div>
         </form>
@@ -141,12 +144,46 @@
 
 <!-- Include the Gold/Silver Calculator Modal -->
 <?php include 'gold-calculator-modal.php'; ?>
+<script src="./assets/js/script.js"></script>
 
-<script>
+<!-- <script>
+    // Initialize Preline components
     // Initialize Preline components
     document.addEventListener('DOMContentLoaded', () => {
-        HSOverlay.init(document.querySelectorAll('.hs-overlay'));
+        // Initialize all Preline components
+        HSStaticMethods.autoInit();
+        
+        // Initialize specific components if needed
+        if (typeof HSOverlay !== 'undefined') {
+            HSOverlay.init(document.querySelectorAll('.hs-overlay'));
+        }
     });
+
+    // form validation
+    document.querySelector('form').addEventListener('submit', function(e) {
+                    const inputs = document.querySelectorAll('input[type="number"]');
+                    let hasValue = false;
+                    
+                    inputs.forEach(input => {
+                        if (input.value && input.value > 0) {
+                            hasValue = true;
+                        }
+                    });
+                    
+                    if (!hasValue) {
+                        e.preventDefault();
+                        document.getElementById('validation-error').classList.remove('hidden');
+                        // Scroll to error message
+                        document.getElementById('validation-error').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                });
+
+                // Hide error message when user starts typing
+                document.querySelectorAll('input[type="number"]').forEach(input => {
+                    input.addEventListener('input', function() {
+                        document.getElementById('validation-error').classList.add('hidden');
+                    });
+                });
     const closeButtons = document.querySelectorAll('[data-hs-overlay="#goldCalculatorModal"]');
         closeButtons.forEach(button => {
             button.addEventListener('click', () => {
@@ -156,13 +193,18 @@
         });
     // Gold prices per gram (in BDT)
     const goldPrices = {
-        '22': 8500,
-        '21': 8100,
-        '18': 7300,
-        'sonaton': 9200
+        '22': 13383 * 0.80, // Taking 80% of the original price
+        '21': 12774 * 0.80,
+        '18': 10949 * 0.80,
+        'sonaton': 9028 * 0.80
     };
-    
-    const silverPrice = 140;
+     // Gold prices per gram (in BDT)
+    const silverPrices={
+        '22': 221 * 0.80, // Taking 80% of the original price
+        '21': 210 * 0.80,
+        '18': 181 * 0.80,
+        'sonaton': 136 * 0.80
+    };
     let currentMetalType = 'gold';
     
     function setMetalType(metalType) {
@@ -210,17 +252,17 @@
         
         rows.forEach(row => {
             const weight = parseFloat(row.querySelector('.ornament-weight').value) || 0;
+            const carat = row.querySelector('.ornament-carat')?.value;
             
             if (currentMetalType === 'gold') {
-                const carat = row.querySelector('.ornament-carat').value;
                 total += weight * goldPrices[carat];
             } else {
-                total += weight * silverPrice;
+                total += weight * silverPrices[carat];
             }
         });
         
         document.getElementById('totalValue').textContent = total.toLocaleString();
-        return total;
+        return Math.round(total);
     }
     
     document.getElementById('confirmGoldValue').addEventListener('click', function() {
@@ -237,4 +279,21 @@
         const firstRow = document.querySelector('.ornament-row');
         addRowEventListeners(firstRow);
     });
-</script>
+
+    // handle select change in modal dynamically
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize Preline Select
+        HSSelect.init('.ornament-carat-btn');
+
+        // Handle select change
+        document.querySelectorAll('.hs-select-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const value = this.dataset.value;
+                const row = this.closest('.ornament-row');
+                const hiddenInput = row.querySelector('.ornament-carat');
+                hiddenInput.value = value;
+                calculateTotal();
+            });
+        });
+    });
+</script> -->

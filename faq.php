@@ -100,10 +100,3 @@
         </div>
     </div>
 </section>
-<script>
-    document.querySelectorAll('.border').forEach(item => {
-        item.addEventListener('click', () => {
-            item.querySelector('p').classList.toggle('hidden');
-        });
-    });
-</script>

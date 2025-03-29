@@ -18,8 +18,7 @@
 </head>
 <body>
     <header 
-  class=" z-50 py-4 px-6 transition-all duration-300 ease-in-out",
-    scrolled bg-white/80 backdrop-blur-lg shadow-subtle">
+  class="z-50 py-4 px-6 transition-all duration-300 ease-in-out scrolled bg-white/80 backdrop-blur-lg shadow-subtle">
   <div class="container mx-auto flex items-center justify-between">
     <a href="/wp-content/zakat-calculator-two">
       <div class="flex items-center space-x-1 text-primary">
@@ -31,12 +30,22 @@
       <a href="#zakat-calculator-section" class="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
         Calculator
       </a>
-      <a href="#about" class="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
+      <!-- <a href="#about" class="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
         About Zakat
-      </a>
+      </a> -->
       <a href="#faq" class="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
         FAQ
       </a>
     </nav>
   </div>
 </header>
+<!-- Add Preline UI JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/preline@3.0.1/dist/preline.min.js"></script>
+        <script>
+            // Initialize Preline UI
+            document.addEventListener('DOMContentLoaded', () => {
+                window.HSStaticMethods.autoInit();
+            });
+        </script>
+</body>
+</html>
